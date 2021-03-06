@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DifFix</title>
+	<script src="FileSaver.min.js"></script>
+	<script src="dif/reader.js"></script>
+	<script src="dif/writer.js"></script>
+	<script src="dif/math.js"></script>
+	<script src="dif/dif.js"></script>
+	<script src="dif/interior.js"></script>
+	<script src="dif/trigger.js"></script>
+	<script src="dif/interiorPathFollower.js"></script>
+	<script src="dif/forceField.js"></script>
+	<script src="dif/aiSpecialNode.js"></script>
+	<script src="dif/vehicleCollision.js"></script>
+	<script src="dif/gameEntity.js"></script>
+	<style type="text/css">
+				html, body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		.filePicker {
+			position: fixed;
+			overflow: hidden;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.backing {
+			margin: 40px;
+			width: calc(100% - 80px);
+			height: calc(100% - 80px);
+			border: 4px solid #ccc;
+			border-radius: 40px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-webkit-justify-content: center;
+			    -ms-flex-pack: center;
+			        justify-content: center;
+		}
+		.content {
+			font-family: "Helvetica Neue UltraLight", "Helvetica Neue", Helvetica, sans-serif;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-align-self: center;
+			    -ms-flex-item-align: center;
+			        align-self: center;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-webkit-flex-direction: column;
+			    -ms-flex-direction: column;
+			        flex-direction: column;
+			-webkit-box-align: center;
+			-webkit-align-items: center;
+			    -ms-flex-align: center;
+			        align-items: center;
+		}
+		.title {
+			font-size: 64pt;
+			text-align: center;
+		}
+		.message {
+			font-size: 24pt;
+			text-align: center;
+		}
+		.message2 {
+			font-size: 20pt;
+			text-align: center;
+		}
+		.formats {
+			font-size: 14pt;
+			width: 25em;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-webkit-flex-direction: column;
+			    -ms-flex-direction: column;
+			        flex-direction: column;
+		}
+		.item {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: justify;
+			-webkit-justify-content: space-between;
+			    -ms-flex-pack: justify;
+			        justify-content: space-between;
+			width: 25em;
+		}
+		.engine {
+			display: -webkit-inline-box;
+			display: -webkit-inline-flex;
+			display: -ms-inline-flexbox;
+			display: inline-flex;
+		}
+		.versions {
+			display: -webkit-inline-box;
+			display: -webkit-inline-flex;
+			display: -ms-inline-flexbox;
+			display: inline-flex;
+		}
+		.cstr {
+			background-image: url("cstr.png");
+			width: 16px;
+			height: 16px;
+			background-size: cover;
+			margin-top: 4px;
+			margin-left: 2px;
+		}
+		#difPicker {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+			opacity: 0;
+			filter: alpha(opacity=0);
+		}
+	</style>
+</head>
+<body>
+	<div class="filePicker">
+		<div class="backing">
+			<div class="content">
+				<div class="title">Drop DIF Files Here</div>
+				<div class="message">Note: Converts to Marble Blast Gold v0 DIFs only right now.</div>
+				<div class="message2">Tested and confirmed to work with the following DIF formats:</div>
+				<div class="formats">
+					<div class="item">
+						<span class="engine">Marble Blast Gold:</span>
+						<span class="versions">v0</span>
+					</div>
+					<div class="item">
+						<span class="engine">Marble Blast Ultra:</span>
+						<span class="versions">v1, v2, v3, v4, v5</span>
+					</div>
+					<div class="item">
+						<span class="engine">Torque Game Engine:</span>
+						<span class="versions">v0, Legacy<span class="cstr"></span></span>
+					</div>
+					<div class="item">
+						<span class="engine">Torque Game Engine Advanced:</span>
+						<span class="versions">v0, Legacy TGEA<span class="cstr"></span></span>
+					</div>
+					<div class="item">
+						<span class="engine">Torque 3D:</span>
+						<span class="versions">v13, v14<span class="cstr"></span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="file" id="difPicker" multiple />
+	</div>
+
+	<script type="text/javascript">
+		var picker = document.getElementById("difPicker");
+		function onChange(e) {
+			var files = e.target.files;
+			for (var i = 0; i < files.length; i ++) {
+				var file = files[i];
+
+				var reader = new FileReader();
+				reader.onload = (function(file) {
+					return function(e) {
+						var raw = e.target.result;
+						var rawBytes = new Uint8Array(raw);
+
+						var dif = new DIF(rawBytes);
+						var outBytes = dif.write();
+
+						var blob = new Blob([outBytes], {type: "application/octet-stream"});
+						var fileName = file.name;
+
+						saveAs(blob, fileName);
+					};
+				})(file);
+				reader.readAsArrayBuffer(file);
+			}
+
+			//Recreate it so we can pick again
+			var parent = picker.parentNode;
+			parent.removeChild(picker);
+			picker = document.createElement("input");
+			picker.setAttribute("type", "file");
+			picker.setAttribute("id", "difPicker");
+			picker.setAttribute("multiple", "multiple");
+			picker.addEventListener("change", onChange, false);
+			parent.appendChild(picker);
+		}
+		
+		picker.addEventListener("change", onChange, false);
+	</script>
+</body>
+</html>

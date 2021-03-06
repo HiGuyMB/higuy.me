@@ -1,0 +1,89 @@
+<html>
+	<head>
+		<title>HiGuy's Website: Platform Assist</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+		<!-- Turns out this page is static and I don't actually need any of this -->
+		<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
+		<!-- <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+
+		<meta name="viewport" content="initial-scale=1, width=device-width">
+
+		<style type="text/css">
+			nav.navbar {
+				background-color: #5cb85c;
+				margin-bottom: 0px;
+			}
+			nav.navbar a, nav.navbar li {
+				color: #fff;
+			}
+			div.jumbotron {
+				margin-top: 40px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-fixed-top">
+			<div class="container">
+				<div id="navbar">
+					<div class="navbar-header">
+						<a href="/" class="navbar-brand">HiGuy's Site</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Platform Assist</h1>
+				<p id="one">
+					A much-needed fix that allows for simple creation of Door_Elevator
+					Moving Platforms directly within Constructor, Platform Assist will
+					save both time and frustration when creating interiors.
+				</p>
+			</div>
+		</div>
+		<div class="container container-fluid">
+			<div class="col-md-4">
+				<h2>
+					Background Plugin
+				</h2>
+				<p>
+					This tool automatically overrides the entity switcher, so creating
+					a platform will invoke it automatically. You should notice that, when selecting
+					"Door_Elevator" as the entity type, all the brushes will have the same entity id.
+				</p>
+				<img src="pa/ChooseEntity.jpg">
+			</div>
+			<div class="col-md-4" style="text-align: center">
+				<h2 style="text-align: left">
+					Tool Plugin
+				</h2>
+				<p style="text-align: left">
+					Additionally, it can be used to combine multiple brushes into a single entity by
+					selecting the brushes and then using the tool manually. A window will appear with
+					a list of entities that you can select. Picking one will make all the selected brushes
+					use that entity.
+				</p>
+				<img src="pa/CombineEntities.jpg">
+			</div>
+			<div class="col-md-4">
+				<h2>
+					Download
+				</h2>
+				<p>
+					You can download this tool <a href="pa/PlatformAssist.zip">at this link</a>.
+				</p>
+				<h2>
+					See the Source Online
+				</h2>
+				<p>
+					You can check out the source code for Platform Assist <a href="pa/PlatformAssist.cs">here</a>.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,211 @@
+<html>
+<head>
+	<title>Key Repeater</title>
+	<style type="text/css">
+* {
+	font-family: Helvetica Neue;
+}
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#game {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding-bottom: 40px;
+}
+#container {
+	width: 512px;
+	height: 100px;
+	border: 1px solid #3366ff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #eee;
+	box-shadow: 0 0 50px 10px #3366ff;
+	border-radius: 30px;
+}
+#container.success {
+	background-color: #ccffcc;
+}
+#container.failure {
+	background-color: #ffcccc;
+}
+#message {
+	font-size: 64px;
+	border: 1px solid #888;
+	border-radius: 10px;
+	margin-bottom: 100px;
+	display: inline-block;
+	box-shadow: 0 0 20px #888;
+	padding: 10px 20px;
+}
+#score {
+	font-size: 64px;
+	border: 1px solid #888;
+	border-radius: 10px;
+	margin-top: 100px;
+	display: inline-block;
+	box-shadow: 0 0 20px #888;
+	padding: 10px 20px;
+}
+#entry {
+	font-size: 64px;
+	letter-spacing: 10px;
+}
+#start {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	border: none;
+	background: none;
+}
+#start.start {
+	display: none;
+}
+
+	</style>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-60728977-2','auto');ga('send','pageview');
+	</script>
+</head>
+<body>
+	<div id="game">
+		<button id="start" onclick="Game.init();"></button>
+		<div id="message">Enter to Start</div>
+		<div id="container">
+			<div id="entry"></div>
+		</div>
+		<div id="score">High Score</div>
+	</div>
+	<script type="text/javascript">
+
+entry = document.getElementById("entry");
+message = document.getElementById("message");
+container = document.getElementById("container");
+start = document.getElementById("start");
+score = document.getElementById("score");
+
+function RepeaterGame() {
+	this.running = false;
+	this.target = 0;
+	this.looping = false;
+	this.loopId = 0;
+	this.chars = 0;
+	this.score = 0;
+}
+RepeaterGame.prototype.init = function() {
+	this.score = 0;
+	this.start();
+}
+RepeaterGame.prototype.start = function() {
+	this.target = Math.ceil(Math.random() * 9) + 1;
+	this.chars = 0;
+	message.innerHTML = "Hold for " + this.target;
+	score.innerHTML = "Score: " + this.score;
+	this.running = true;
+	this.looping = false;
+	entry.innerHTML = "";
+	this.updateState("start");
+}
+RepeaterGame.prototype.success = function() {
+	clearTimeout(this.loopId);
+	this.score ++;
+
+	if (typeof(localStorage.highscore) === "undefined" || this.score > localStorage.highscore)
+		localStorage.highscore = this.score;
+
+	this.start();
+}
+RepeaterGame.prototype.failure = function() {
+	message.innerHTML = "Enter to Retry";
+	this.updateState("failure");
+	this.running = false;
+
+	if (typeof(localStorage.highscore) === "undefined" || this.score > localStorage.highscore)
+		localStorage.highscore = this.score;
+
+	this.showHighscore(true);
+}
+RepeaterGame.prototype.showHighscore = function(showScore) {
+	var highscore = localStorage.highscore;
+	if (typeof(localStorage.highscore) === "undefined")
+		highscore = 0;
+	score.innerHTML = (showScore ? "Score: " + this.score + " " : "") + "High Score: " + highscore;
+}
+RepeaterGame.prototype.pressed = function(code) {
+	entry.innerHTML += "&bull;";
+	this.chars ++;
+	if (this.chars > 13) {
+		this.failure();
+	}
+}
+RepeaterGame.prototype.loop = function(code) {
+	if (!this.running) {
+		this.looping = false;
+		return;
+	}
+	this.pressed(code);
+	this.loopId = setTimeout(function(game){game.loop(code);}, 50, this);
+}
+RepeaterGame.prototype.onkeydown = function(e) {
+	if (e.keyCode == 13) { //Enter
+		return;
+	}
+	if (e.keyCode < 0x20) {
+		return;
+	}
+	if (this.running) {
+		this.updateState("start");
+		if (this.looping == false) {
+			this.looping = true;
+			this.loopId = setTimeout(function(game){game.loop(e.keyCode);}, 250, this);
+
+			this.pressed(e.keyCode);
+		}
+	}
+}
+RepeaterGame.prototype.onkeyup = function(e) {
+	if (e.keyCode == 13) { //Enter
+		if (this.running)
+			return;
+		this.init();
+		return;
+	}
+	if (e.keyCode < 0x20) {
+		return;
+	}
+	if (this.running) {
+		if (this.chars == this.target) {
+			this.success();
+		} else {
+			this.failure();
+		}
+	}
+}
+
+//Updated success / start state
+RepeaterGame.prototype.updateState = function(state) {
+	[document.body, entry, message, container, start, score].forEach(function(control) {
+		control.setAttribute("class", state);
+	});
+}
+
+//Create the game
+Game = new RepeaterGame();
+Game.showHighscore(false);
+
+//Document event bindings
+document.onkeydown = function(e) {
+	Game.onkeydown(e);
+}
+document.onkeyup = function(e) {
+	Game.onkeyup(e);
+}
+	</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<html>
+	<head>
+		<title>HiGuy's Website: MB Map Splitter</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+		<!-- Turns out this page is static and I don't actually need any of this -->
+		<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
+		<!-- <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+
+		<meta name="viewport" content="initial-scale=1, width=device-width">
+
+		<style type="text/css">
+			nav.navbar {
+				background-color: #5cb85c;
+				margin-bottom: 0px;
+			}
+			nav.navbar a, nav.navbar li {
+				color: #fff;
+			}
+			div.jumbotron {
+				margin-top: 40px;
+				overflow: hidden;
+			}
+			.small-pre {
+				padding: 4px;
+				padding-left: 9.5px;
+				font-size: 11px;
+			}
+			p.bg-info {
+				padding: 10px 13px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-fixed-top">
+			<div class="container">
+				<div id="navbar">
+					<div class="navbar-header">
+						<a href="/" class="navbar-brand">HiGuy's Site</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Marble Blast Map Splitter</h1>
+				<p id="one">
+					A cross-platform map splitting program using C++. This program uses the DSATUR map-splitting algorithm,
+					with an implementation written by <a href="http://marbleblast.com/index.php/forum/profile/799-whirligig">Whirligig231</a>.
+				</p>
+			</div>
+		</div>
+		<div class="container container-fluid">
+			<div class="col-md-4">
+				<h2 style="text-align: justify">
+					Basic Usage
+				</h2>
+				<p>
+					The most basic usage of this tool is just dropping map files onto the executable/application
+					directly from your file manager.
+				</p>
+				<p>
+					For Windows users, simply drop .map files onto MBMapSplitter.exe and they will be split in the same directory.
+				</p>
+				<!-- See below
+				<p>
+					For Mac OS X users, simply drop .map files onto MBMapSplitter.app and they will be split in the same manner.
+				</p>
+				-->
+			</div>
+			<div class="col-md-4">
+				<h2>
+					Command-Line Usage
+				</h2>
+				<p>
+					MBMapSplitter &lt;map file&gt; [-e export file [-p prefix]]
+				</p>
+				<pre>-e &lt;export file&gt;</pre>
+				<p>
+					Add these flags to specify a .cs file where the map splitter will output a formatted
+					list of InteriorInstances ready for you to copy+paste into your .mis file. These will
+					all be at the origin (0 0 0) and should all have the same position if you move them.
+				</p>
+				<pre>-p &lt;prefix&gt;</pre>
+				<p>
+					Add these flags to specify a prefix to be appended to the InteriorInstance paths written
+					to the export file. By default they will just reference the current directory:
+					<pre class="small-pre">interiorFile = "Mapname-0.dif";</pre>
+					With this option you can customize that to have a directory:
+					<pre class="small-pre">interiorFile = "path/to/interiors/Mapname-0.dif";</pre>
+				</p>
+			</div>
+			<div class="col-md-4">
+				<h2>
+					Download
+				</h2>
+				<p>
+					You can download this tool using the links below for your platform:
+					<ul>
+						<li><a href="/split/MBMapSplitter.exe">Windows</a></li>
+						<!-- Todo: unsigned version, if you download this gatekeeper will throw a fit. You can unsign it (if you can figure out how) and it should work but ymmv <li><a href="/split/MBMapSplitter.app.zip">Mac OS X (application bundle)</a></li> -->
+						<li><a href="/split/MBMapSplitter">Mac OS X (command-line)</a></li>
+					</ul>
+				</p>
+				<!-- See above
+				<p class="bg-info">
+					On Mac OS X 10.9+, you may need to bypass Gatekeeper to run the application bundle.
+					Simply right click (or hold control and click) the application and select "Open" from the contextual menu.
+				</p>
+				-->
+				<h2>
+					Source Code
+				</h2>
+				<p>
+					You can download the source code for MBMapSplitter <a href="/split/MBMapSplitter-Source.zip">here</a>.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

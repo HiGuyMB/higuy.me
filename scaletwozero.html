@@ -1,0 +1,160 @@
+<html>
+	<head>
+		<title>HiGuy's Website: Scale Two Zero</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+		<!-- Turns out this page is static and I don't actually need any of this -->
+		<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
+		<!-- <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+
+		<meta name="viewport" content="initial-scale=1, width=device-width">
+
+		<style type="text/css">
+			nav.navbar {
+				background-color: #5cb85c;
+				margin-bottom: 0px;
+			}
+			nav.navbar a, nav.navbar li {
+				color: #fff;
+			}
+			div.jumbotron {
+				margin-top: 40px;
+				overflow: hidden;
+			}
+			div.jumbotron img {
+				position: relative;
+				top: -50px;
+				margin-bottom: -200px;
+				margin-left: -465px;
+				left: 50%;
+			}
+			div.jumbotron h1 {
+				position: absolute;
+				top: 75px;
+				box-shadow: rgba(240, 240, 240, 0.85) 0px 0px 20px 20px;
+				background-color: rgba(240, 240, 240, 0.85);
+			}
+			div.jumbotron p#one {
+				position: relative;
+				top: -300px;
+				box-shadow: rgba(240, 240, 240, 0.85) 0px 0px 20px 20px;
+				background-color: rgba(240, 240, 240, 0.85);
+			}
+			div.jumbotron p#two {
+				position: relative;
+				top: 50px;
+				font-size: 18px;
+				text-align: center;
+				margin-bottom: 30px;
+				box-shadow: rgba(240, 240, 240, 0.85) 0px 0px 20px 20px;
+				background-color: rgba(240, 240, 240, 0.85);
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-fixed-top">
+			<div class="container">
+				<div id="navbar">
+					<div class="navbar-header">
+						<a href="/" class="navbar-brand">HiGuy's Site</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="jumbotron">
+			<div class="container">
+				<img src="s2z/map.png">
+				<h1>Scale Two Zero</h1>
+				<p id="one">
+					An extension of the Scale to Zero plugin by ShadowMarble, this plugin
+					simplifies making complex curves by combining pairs of vertices. It will
+					find the closest pairs of vertices and merge them together, with options for
+					weighting the various axes for different output.
+				</p>
+				<p id="two">
+					Map created in roughly an hour with the use of Scale Two Zero.
+				</p>
+			</div>
+		</div>
+		<div class="container container-fluid">
+			<div class="col-md-4">
+				<h2>
+					Tool Properties
+				</h2>
+				<h3>Axis</h3>
+				<ul>
+					<li>
+						Axis Toggles
+						<ul>
+							<li>X Axis</li>
+							<li>Y Axis</li>
+							<li>Z Axis</li>
+						</ul>
+						<p>
+							Use these to specify which axes Scale Two Zero will affect. The usual configuration uses X, Y, and Z for complete combination.
+						</p>
+					</li>
+				</ul>
+				<h3>Options</h3>
+				<ul>
+					<li>
+						Lower Bound
+						<p>
+							Set the lower bound for point grouping. All points within this distance of each other are treated as the same point and will be scaled as one.
+						</p>
+					</li>
+					<li>
+						Axis Modifiers
+						<ul>
+							<li>X Modifier</li>
+							<li>Y Modifier</li>
+							<li>Z Modifier</li>
+						</ul>
+						<p>
+							Use these to "weight" the various axes if needed. Note that distances along these axes will be multiplied, so setting a large value for one of these
+							will nullify the effects of that axis. Generally these are not needed unless your vertices are too far to easily combine.
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-4" style="text-align: center">
+				<h2 style="text-align: justify">
+					Example Screenshots
+				</h2>
+				<p>
+					Here are a few example pictures of the plugin in action.
+				</p>
+				<p>
+					An animation of how the plugin combines nearby pairs of vertices.
+				</p>
+				<img src="s2z/cubes.gif">
+				<p>
+					An example map created in under 5 minutes using Scale Two Zero.
+				</p>
+				<img src="s2z/coil.png">
+			</div>
+			<div class="col-md-4">
+				<h2>
+					Download
+				</h2>
+				<p>
+					You can download this tool (and others) using these links below:
+					<ul>
+						<li><a href="s2z/S2ZFlexiCube.zip">Both Plugins and the FlexiCube</a></li>
+						<li><a href="s2z/ScaleTwoZero.zip">Scale Two Zero 1.0 by HiGuy</a></li>
+						<li><a href="s2z/ScaleToZero.zip">Scale to Zero (the original) 1.0 by ShadowMarble</a></li>
+						<li><a href="s2z/FlexiCube.zip">The FlexiCube (useful for curves) by CyberFox</a></li>
+					</ul>
+				</p>
+				<h2>
+					See the Source Online
+				</h2>
+				<p>
+					You can check out the source code for Scale Two Zero <a href="s2z/scaletwozero.cs">here</a>.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

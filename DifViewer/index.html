@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DIF Viewer</title>
+
+    <!-- Make it pretty! -->
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- Pretty useful math library -->
+    <script src="lib/gl-matrix-min.js"></script>
+    <script src="lib/ammo.js"></script>
+    <script src="scripts/convert.js"></script>
+
+    <!-- Javascript GL classes -->
+    <script src="scripts/shader.js"></script>
+    <script src="scripts/vbo.js"></script>
+    <script src="scripts/texture.js"></script>
+    <script src="scripts/material.js"></script>
+	<script src="scripts/materialMap.js"></script>
+	<script src="scripts/skySphere.js"></script>
+	<script src="scripts/interiorModel.js"></script>
+
+    <!-- Whoooo -->
+    <script src="scripts/physics.js"></script>
+    <script src="scripts/sphere.js"></script>
+
+	<!-- DIF library -->
+	<script src="scripts/dif/reader.js"></script>
+	<script src="scripts/dif/writer.js"></script>
+	<script src="scripts/dif/math.js"></script>
+	
+	<script src="scripts/dif/dif.js"></script>
+	<script src="scripts/dif/aiSpecialNode.js"></script>
+	<script src="scripts/dif/forceField.js"></script>
+	<script src="scripts/dif/gameEntity.js"></script>
+	<script src="scripts/dif/interior.js"></script>
+	<script src="scripts/dif/interiorPathFollower.js"></script>
+	<script src="scripts/dif/trigger.js"></script>
+	<script src="scripts/dif/vehicleCollision.js"></script>
+
+    <!-- Main GL and rendering -->
+    <script src="scripts/gl.js"></script>
+
+    <!-- Window, cursor, and keyboard control -->
+    <script src="scripts/input.js"></script>
+</head>
+<body>
+<div id="input">
+	<label for="picker">DIF File (v0-MBG only): <input type="file" id="picker" multiple></label><br>
+	<table id="difInfo"></table>
+	<label for="physics">Physics (test): <input type="checkbox" id="physics"></label><br>
+	<label for="shaders">Shaders (MBU Noise Tiles / Ice): <input type="checkbox" id="shaders" checked></label><br>
+	<label for="skyChoice">Sky Sphere:
+		<select id="skyChoice">
+			<option value="Clear" selected>Clear</option>
+			<option value="Dusk">Dusk</option>
+			<option value="Wintry">Wintry</option>
+		</select>
+	</label><br>
+	<label for="texChoice">Texture Album:
+		<select id="texChoice">
+			<option value="custom" selected>Custom</option>
+			<option value="mbg">Gold</option>
+			<option value="mbp">Platinum</option>
+			<option value="mbu">Ultra</option>
+		</select>
+	</label><br>
+	Controls:<br>
+	<div id="controls">
+		<div id="controlsTop">
+			<a class="button" id="controlForward"></a>
+		</div>
+		<div id="controlsBottom">
+			<a class="button" id="controlLeft"></a>
+			<a class="button" id="controlBackward"></a>
+			<a class="button" id="controlRight"></a>
+		</div>
+	</div>
+
+	<input type="submit" value="Load" id="load">
+</div>
+<div id="fpsMeter"></div>
+
+<!-- Load UI here so the DOM is created -->
+<script src="scripts/ui.js"></script>
+</body>
+</html>
