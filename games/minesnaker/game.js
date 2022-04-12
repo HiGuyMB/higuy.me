@@ -9,7 +9,8 @@ var game = {
 		headDX: 0,
 		headDY: 1,
 		length: 10,
-		alive: true
+		alive: true,
+		advanceTimeout: 0
 	},
 	score: 0,
 	field: [],
@@ -71,7 +72,8 @@ function startGame() {
 		headDX: 0,
 		headDY: 1,
 		length: 10,
-		alive: true
+		alive: true,
+		advanceTimeout: 0
 	};
 	game.score = 0;
 
@@ -185,7 +187,15 @@ function advanceSnake() {
 		game.snake.alive = false;
 	}
 
+	if (game.snake.advanceTimeout) {
+		clearTimeout(game.snake.advanceTimeout);
+	}
+
 	render();
+
+	if (!game.snake.alive) {
+		game.snake.advanceTimeout = setTimeout(advanceSnake, 1000);
+	}
 }
 
 document.body.addEventListener("keydown", function(e) {
