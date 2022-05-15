@@ -1,0 +1,9 @@
+<html>
+<body>
+    <script type="text/javascript">
+        const url = new URL(window.location);
+        url.pathname = url.pathname.replace(/\.php.*/, ".html");
+        window.location = url;
+    </script>
+</body>
+</html>
