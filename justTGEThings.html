@@ -1,0 +1,532 @@
+<html>
+<body>
+    <h1 style="margin:0px;" id="engine">#JustTGEThings</h1>
+    <h3 style="color:#999999;margin:0px 0px 20px 0px;">Because it's not supposed to just work, right?</h3>
+    <b id="name"></b>
+    <br>
+    <pre id="text"></pre>
+    Oh God there's <a href="justTGEThings.html"><b>more</b></a>.<br>
+    Share the horrifying with this <a href="justTGEThings.html?id=" id="link"><b>link</b></a>.
+
+    <script type="text/javascript">
+        let things = {
+            "1": {
+                "name": "This was in a \"professional\" engine",
+                "text": "function foobar(%file){\n   echo (\"TODO LOAD \" @ %file);\n}",
+                "engine": "TSE",
+                "date": "2014-12-29 03:22:42"
+            },
+            "2": {
+                "name": "Why not just use a negative?",
+                "text": "inline U16 Interior::getPlaneIndex(U16 index){\n   return U16(index & ~0x8000);\n}",
+                "engine": "TGE",
+                "date": "2014-12-29 03:23:15"
+            },
+            "3": {
+                "name": "Or you could just set a bool?",
+                "text": "inline bool Interior::planeIsFlipped(U16 index){\n   return (index >> 15)!=0;\n}",
+                "engine": "TGE",
+                "date": "2014-12-29 03:23:29"
+            },
+            "4": {
+                "name": "Do I even want to know?",
+                "text": "//!!!!!!TBD -- is there a rotate intrinsic?????\n#define ROL16(x)\t\t(x) = ((((x)<<16)&0xFFFF0000) | (((x)>>16)&0x0000FFFF))\n",
+                "engine": "TGE",
+                "date": "2014-12-29 03:23:41"
+            },
+            "5": {
+                "name": "Dear God I hope so!",
+                "text": "const float two55 = (F32)0x473F0000; // !!!!!!TBD -- not sure this is right...",
+                "engine": "TGE",
+                "date": "2014-12-29 03:23:55"
+            },
+            "6": {
+                "name": "Well that's frightening.",
+                "text": "AssertFatal(success, \"MNG read catastrophic error!\");",
+                "engine": "TGE",
+                "date": "2014-12-29 03:24:18"
+            },
+            "7": {
+                "name": "How many arguments does this function take?",
+                "text": "ConsoleFunction( showSetPos, void, 2, 2, \"(int threadNum, float pos)\")\n{\n   ShowTSShape * currentShow = ShowTSShape::currentShow;\n   if (!currentShow)\n      return;\n\n   S32 idx = dAtoi(argv[1]);\n   float s = dAtof(argv[2]);\n   if (idx>=0)\n      currentShow->setPos(idx,s);\n}\n",
+                "engine": "TGE",
+                "date": "2014-12-29 03:38:01"
+            },
+            "8": {
+                "name": "How to load a script for a given shape:",
+                "text": "...\n   // before loading shape, execute associated script\n   char *ext = dStrstr( static_cast<char*>( fileBuffer ), const_cast<char*>( \".dts\" ) );\n   if (ext)\n   {\n      ext[1]='c';\n      ext[2]='s';\n      ext[3]='\\0';\n      Con::executef(2,\"exec\",fileBuffer);\n      ext[1]='d';\n      ext[2]='t';\n      ext[3]='s';\n   }\n...",
+                "engine": "TGE",
+                "date": "2014-12-29 03:38:59"
+            },
+            "9": {
+                "name": "What should we initialize to?",
+                "text": "void ShowInit()\n{\n   ...\n\n   cameraMatrix.identity();\n   camRot.set(0,0,0);\n   camPos.set(10,10,10);\n   cameraMatrix.setColumn(3,camPos);\n}\n",
+                "engine": "TGE",
+                "date": "2014-12-29 03:39:37"
+            },
+            "10": {
+                "name": "I assume this is supposed to make sense?",
+                "text": "ConsoleFunction(showSetKeyboard, void, 2, 2, \"(char moveShape) Set to t or T.\")\n{\n   keyboardControlsShape = (argv[1][0]=='t' || argv[1][0]=='T');\n}",
+                "engine": "TGE",
+                "date": "2014-12-29 03:39:57"
+            },
+            "11": {
+                "name": "You know you're high when you cast to a GuiSliderCtrl",
+                "text": "...\n   slider = static_cast<GuiSliderCtrl*>(Sim::findObject(\"emapAlpha\"));\n   if (slider)\n      emapAlpha = slider->getValue();\n   slider = static_cast<GuiSliderCtrl*>(Sim::findObject(\"ambR\"));\n   if (slider)\n      ambR = slider->getValue();\n   slider = static_cast<GuiSliderCtrl*>(Sim::findObject(\"ambG\"));\n   if (slider)\n      ambG = slider->getValue();\n   slider = static_cast<GuiSliderCtrl*>(Sim::findObject(\"ambB\"));\n   if (slider)\n      ambB = slider->getValue();\n   slider = static_cast<GuiSliderCtrl*>(Sim::findObject(\"diffR\"));\n   if (slider)\n      diffR = slider->getValue();\n   slider = static_cast<GuiSliderCtrl*>(Sim::findObject(\"diffG\"));\n   if (slider)\n      diffG = slider->getValue();\n   slider = static_cast<GuiSliderCtrl*>(Sim::findObject(\"diffB\"));\n   if (slider)\n      diffB = slider->getValue();\n...",
+                "engine": "TGE",
+                "date": "2014-12-29 03:40:38"
+            },
+            "12": {
+                "name": "Did they actually hard-code the objects?",
+                "text": "   // set thread position slider\n   GuiSliderCtrl * slider = static_cast<GuiSliderCtrl*>(Sim::findObject(\"threadPosition\"));\n   GuiTextListCtrl * threadList = static_cast<GuiTextListCtrl*>(Sim::findObject(\"threadList\"));\n   GuiTextCtrl * transitionSignal = static_cast<GuiTextCtrl*>(Sim::findObject(\"transitionSignal\"));\n",
+                "engine": "TGE",
+                "date": "2014-12-29 03:40:57"
+            },
+            "13": {
+                "name": "Because yelling helped us remember",
+                "text": "// FIXMEFIXMEFIXME MATH\n\ninline bool IsEqual(F32 a, F32 b) { return a == b; }",
+                "engine": "TGE",
+                "date": "2014-12-29 03:48:08"
+            },
+            "14": {
+                "name": "Glad to know this engine was thought through",
+                "text": "      // FIXME: arbitrary large constant\n      mFogScale = 1000.0f;",
+                "engine": "TGE",
+                "date": "2014-12-29 03:50:15"
+            },
+            "15": {
+                "name": "Will have to do for ... the next 15 years",
+                "text": "void TextureDictionary::preDestroy()\n{\n   // This is a horrid hack, but it will have to do for now.  (DMM, aided\n   //  and abetted by MF.)\n   TextureObject* walk = smTOList;\n   while (walk)",
+                "engine": "TGE",
+                "date": "2014-12-29 03:51:52"
+            },
+            "16": {
+                "name": "Good to know we can detect these now.",
+                "text": "AssertFatal(finalWinding.numIndices == rWinding.numIndices, \"Ah, crap.  Paradox.\");\n",
+                "engine": "Map2Dif",
+                "date": "2014-12-29 03:53:29"
+            },
+            "17": {
+                "name": "Losing our cool over finds",
+                "text": "AssertFatal(numFinds <= brush->mPlanes.size(), avar(\"Error, too many damn finds (%d)!\", brush->brushId));\n",
+                "engine": "Map2Dif",
+                "date": "2014-12-29 03:54:38"
+            },
+            "18": {
+                "name": "Let's just hope so!",
+                "text": "// given that we're returning a 32 bit integer, and this is unsigned subtraction... \n// it will just wrap around, we don't need the upper word of the time.\n// NOTE: the code assumes that more than 3 hrs will not go by between calls to startHighResolutionTimer() and endHighResolutionTimer().\n// I mean... that damn well better not happen anyway.\n",
+                "engine": "TGE",
+                "date": "2014-12-29 03:55:59"
+            },
+            "19": {
+                "name": "Nice choice of test messages",
+                "text": "ConsoleFunction(testAsserts, void, 1,1,\"\")\n{\n   AssertFatal(false,\"Monsters in my OATMEAL.\");\n   AssertWarn(false,\"Oh sweet mercy, the PAIN... THE PAIN!\");\n   AssertISV(false,\"AAaaah! *GARGLE* *SPUTTER* *WET THUD*\");\n}\n",
+                "engine": "TGE",
+                "date": "2014-12-29 18:01:56"
+            },
+            "20": {
+                "name": "Because we can't make that an actual function, right?",
+                "text": "ConsoleFunction( testSetWindowTitle, void, 2,4, \"\")\n{\n   Platform::setWindowTitle(argv[1]);\n}",
+                "engine": "TGE",
+                "date": "2014-12-29 18:02:14"
+            },
+            "21": {
+                "name": "Varrity Var",
+                "text": "   FlaggityFlag         = BIT(2),",
+                "engine": "TGE",
+                "date": "2014-12-29 18:03:56"
+            },
+            "22": {
+                "name": "Glad they thought about adding that",
+                "text": "void SceneGraph::compactZonesCheck()\n{\n   if (mNumActiveZones > (mCurrZoneEnd / 2))\n      return;\n\n   // DMMTODO: Compact zones...\n   //\n}\n",
+                "engine": "TGE",
+                "date": "2014-12-29 18:06:30"
+            },
+            "23": {
+                "name": "Jesus Christ this engine is old",
+                "text": "   /// Merge another vector into this one.\n   ///\n   /// @author BJW 8/20/97\n   void merge(const Vector& p);",
+                "engine": "TGE",
+                "date": "2014-12-29 18:12:49"
+            },
+            "24": {
+                "name": "WELL I HOPE YOU DID",
+                "text": "//WE NEED TO IMPLEMENT A FAST 2D ROTATION -- NOT THIS SLOWER 3D ROTATION\nMatrixF rotMatrix( EulerF( 0.0f, 0.0f, mDegToRad(fSpin) ) );\n",
+                "engine": "TGE",
+                "date": "2014-12-29 18:14:24"
+            },
+            "25": {
+                "name": "That's a very reliable hash function you have there",
+                "text": "S32 HashPointer(StringTableEntry ptr)\n{\n   return (S32)(((dsize_t)ptr) >> 2);\n}\n",
+                "engine": "TGE",
+                "date": "2014-12-29 18:21:06"
+            },
+            "26": {
+                "name": "Thanks for the warning",
+                "text": "   ent->mMinArgs = -1; // Make sure it explodes if somehow we run this entry.\n   ent->mMaxArgs = -2;",
+                "engine": "TGE",
+                "date": "2014-12-29 18:22:05"
+            },
+            "27": {
+                "name": "512-Bit numbers are numbers too!",
+                "text": "      // If it's longer than 256 bytes, it's certainly not a number.\n      //\n      // (This decision may come back to haunt you. Shame on you if it\n      // does.)\n      if(stringLen < 256)\n",
+                "engine": "TGE",
+                "date": "2014-12-29 18:22:59"
+            },
+            "28": {
+                "name": "Thanks for the onomatopoeia",
+                "text": "processHeartbeat(gHeartbeatSeq);  // thump-thump...\n",
+                "engine": "TGE",
+                "date": "2014-12-29 18:25:22"
+            },
+            "29": {
+                "name": "Strange arbitrary limits",
+                "text": "      // Enforce a 24-character limit on the server name:\n      char serverName[25];\n      dStrncpy( serverName, Con::getVariable( \"Pref::Server::Name\" ), 24 );\n      serverName[24] = 0;\n",
+                "engine": "TGE",
+                "date": "2014-12-29 18:29:46"
+            },
+            "30": {
+                "name": "Why is this even required?",
+                "text": "void DebugView::onRender(Point2I offset, const RectI &updateRect)\n{\n...\n   GuiTSCtrl *tsCtrl;\n   if (! Sim::findObject(\"PlayGui\", tsCtrl))\n   {\n      Con::printf(\"DebugView failed - unable to find TS ctrl.\");\n      return;\n   }\n",
+                "engine": "TGE",
+                "date": "2014-12-29 18:35:30"
+            },
+            "31": {
+                "name": "So that's why I can't use my own models",
+                "text": "   // create a weapon for this dude\n   Resource<TSShape> wShape;\n   if( dStrcmp( shape, \"heavy_male\") == 0 || dStrcmp( shape, \"bioderm_heavy\") == 0 || dStrcmp( shape, \"heavy_female\") == 0 )\n   {\n      wShape = ResourceManager->load( \"shapes/weapon_mortar.dts\" );\n   }\n   else if( dStrcmp( shape, \"medium_male\") == 0 || dStrcmp( shape, \"bioderm_medium\") == 0 || dStrcmp( shape, \"medium_female\") == 0 )\n   {\n      wShape = ResourceManager->load( \"shapes/weapon_plasma.dts\" );\n   }\n   else\n   {\n      wShape = ResourceManager->load( \"shapes/weapon_disc.dts\" );\n   }\n",
+                "engine": "TGE",
+                "date": "2014-12-29 18:36:35"
+            },
+            "32": {
+                "name": "Purest WTF",
+                "text": "// O hackery of hackeries\n#define conmethod_return_const              return (const\n#define conmethod_return_S32                return (S32\n#define conmethod_return_F32                return (F32\n#define conmethod_nullify(val)\n#define conmethod_return_void               conmethod_nullify(void\n#define conmethod_return_bool               return (bool",
+                "engine": "TGE",
+                "date": "2015-01-01 17:15:15"
+            },
+            "33": {
+                "name": "That's Efficient",
+                "text": "void setBoolVariable(const char *varName, bool value)\n{\n   setVariable(varName, value ? \"1\" : \"0\");\n}",
+                "engine": "TGE",
+                "date": "2015-01-01 17:19:17"
+            },
+            "34": {
+                "name": "I knew programmers were bad at naming, but c'mon!",
+                "text": "if(client->state == DisconnectThisDude)\n   sendStr = \"Too many tries... cya.\";\nelse\n   sendStr = \"Nope... try agian.\\r\\nEnter Password:\";\n",
+                "engine": "TGE",
+                "date": "2015-01-01 17:24:02"
+            },
+            "35": {
+                "name": "Not sure they ever added this",
+                "text": "bool FileObject::openForRead(const char* /*fileName*/)\n{\n   AssertFatal(false, \"Error, not yet implemented!\");\n   return false;\n}\n",
+                "engine": "TGE",
+                "date": "2015-01-01 17:35:17"
+            },
+            "36": {
+                "name": "Holy shit does programming an interpreter make you go insane",
+                "text": "// Find it!\nSimObject *parent;\nif(Sim::findObject(objParent, parent))\n{\n\t// Con::printf(\" - Parent object found: %s\", parent->getClassName());\n\n\t// and suck the juices from it!\n\tcurrentNewObject->assignFieldsFrom(parent);\n}\nelse\n\tCon::errorf(ConsoleLogEntry::General, \"%s: Unable to find parent object %s for %s.\", getFileLine(ip-1), objParent, callArgv[1]);\n\n// Mm! Juices!",
+                "engine": "TGE",
+                "date": "2015-01-20 10:50:05"
+            },
+            "37": {
+                "name": "This explains why my call failed...",
+                "text": "   const U32 maxArg = 10;\n   AssertFatal(checkArgc == argc, \"Incorrect arg count passed to Con::executef()\");\n   AssertFatal(argc <= maxArg, \"Too many args passed to Con::_executef(). Please update the function to handle more.\");\n",
+                "engine": "TGE",
+                "date": "2015-08-01 22:49:58"
+            },
+            "38": {
+                "name": "SWEET MOTHER OF JESUS THIS IS WHY VARIADICS ARE A THING",
+                "text": "#define A const char*\n#define OBJ SimObject* obj\nconst char *executef(OBJ, A a)                                    { return _executef(obj, 1, 1, a); }\nconst char *executef(OBJ, A a, A b)                               { return _executef(obj, 2, 2, a, b); }\nconst char *executef(OBJ, A a, A b, A c)                          { return _executef(obj, 3, 3, a, b, c); }\nconst char *executef(OBJ, A a, A b, A c, A d)                     { return _executef(obj, 4, 4, a, b, c, d); }\nconst char *executef(OBJ, A a, A b, A c, A d, A e)                { return _executef(obj, 5, 5, a, b, c, d, e); }\nconst char *executef(OBJ, A a, A b, A c, A d, A e, A f)           { return _executef(obj, 6, 6, a, b, c, d, e, f); }\nconst char *executef(OBJ, A a, A b, A c, A d, A e, A f, A g)      { return _executef(obj, 7, 7, a, b, c, d, e, f, g); }\nconst char *executef(OBJ, A a, A b, A c, A d, A e, A f, A g, A h) { return _executef(obj, 8, 8, a, b, c, d, e, f, g, h); }\nconst char *executef(OBJ, A a, A b, A c, A d, A e, A f, A g, A h, A i) { return _executef(obj, 9, 9, a, b, c, d, e, f, g, h, i); }\nconst char *executef(OBJ, A a, A b, A c, A d, A e, A f, A g, A h, A i, A j) { return _executef(obj,10,10, a, b, c, d, e, f, g, h, i, j); }\nconst char *executef(OBJ, A a, A b, A c, A d, A e, A f, A g, A h, A i, A j, A k) { return _executef(obj,11,11, a, b, c, d, e, f, g, h, i, j, k); }\n#undef A",
+                "engine": "TGE",
+                "date": "2015-08-01 22:50:18"
+            },
+            "39": {
+                "name": "Nice Variadic Support",
+                "text": "#define B( a ) const char* a = NULL\n#define A const char*\ninline const char*_executef(SimObject *obj, S32 checkArgc, S32 argc, \n                            A a, B(b), B(c), B(d), B(e), B(f), B(g), B(h), B(i), B(j))\n{\n#undef A\n#undef B\n",
+                "engine": "TGE",
+                "date": "2015-08-01 22:53:07"
+            },
+            "40": {
+                "name": "THANK THE LORD THAT C++11 HAS VARIADIC TEMPLATES BECAUSE HOLY SHIT WHAT THE FUCK",
+                "text": "// Helper struct to count the number of parameters in a function list.\n// The setup through operator () allows omitting the the argument list entirely.\nstruct _EngineConsoleThunkCountArgs\n{\n\n   template< typename A >\n   U32 operator ()( A a )\n   {\n      return 1;\n   }\n\n   template< typename A, typename B >\n   U32 operator ()( A a, B b )\n   {\n      return 2;\n   }\n\n   template< typename A, typename B, typename C >\n   U32 operator ()( A a, B b, C c )\n   {\n      return 3;\n   }\n\n   template< typename A, typename B, typename C, typename D >\n   U32 operator ()( A a, B b, C c, D d )\n   {\n      return 4;\n   }\n\n   template< typename A, typename B, typename C, typename D, typename E >\n   U32 operator ()( A a, B b, C c, D d, E e )\n   {\n      return 5;\n   }\n\n   template< typename A, typename B, typename C, typename D, typename E, typename F >\n   U32 operator ()( A a, B b, C c, D d, E e, F f )\n   {\n      return 6;\n   }\n\n   template< typename A, typename B, typename C, typename D, typename E, typename F, typename G >\n   U32 operator ()( A a, B b, C c, D d, E e, F f, G g )\n   {\n      return 7;\n   }\n\n   template< typename A, typename B, typename C, typename D, typename E, typename F, typename G, typename H >\n   U32 operator ()( A a, B b, C c, D d, E e, F f, G g, H h )\n   {\n      return 8;\n   }\n\n   template< typename A, typename B, typename C, typename D, typename E, typename F, typename G, typename H, typename I >\n   U32 operator ()( A a, B b, C c, D d, E e, F f, G g, H h, I i )\n   {\n      return 9;\n   }\n\n   template< typename A, typename B, typename C, typename D, typename E, typename F, typename G, typename H, typename I, typename J >\n   U32 operator ()( A a, B b, C c, D d, E e, F f, G g, H h, I i, J j )\n   {\n      return 10;\n   }\n\n   template< typename A, typename B, typename C, typename D, typename E, typename F, typename G, typename H, typename I, typename J, typename K >\n   U32 operator ()( A a, B b, C c, D d, E e, F f, G g, H h, I i, J j, K k )\n   {\n      return 11;\n   }\n\n   template< typename A, typename B, typename C, typename D, typename E, typename F, typename G, typename H, typename I, typename J, typename K, typename L >\n   U32 operator ()( A a, B b, C c, D d, E e, F f, G g, H h, I i, J j, K k, L l )\n   {\n      return 12;\n   }\n\n   \n   operator U32() const\n   {\n      return 0;\n   }\n};\n",
+                "engine": "TGE",
+                "date": "2015-08-01 22:55:23"
+            },
+            "41": {
+                "name": "Really saving space on the bits there!",
+                "text": "#define SG_GRAY\t\t\t\t0x7BDF// 01111 01111 01111 1\n#define SG_REDMASK\t\t\t0xF800// 11111 00000 00000 0\n#define SG_BLUEMASK\t\t\t0x3E  // 00000 00000 11111 0\n#define SG_GREENMASK\t\t\t0x7C0 // 00000 11111 00000 0\n#define SG_ALPHAMASK\t\t\t0x1   // 00000 00000 00000 1\n",
+                "engine": "TGE",
+                "date": "2015-08-05 00:18:53"
+            },
+            "42": {
+                "name": "Why is this a global, and why was this code in a tool?",
+                "text": "// FOR SILLY LINK DEPENDANCY. REMOVE THIS AT YOUR PERIL.\nbool gEditingMission = false;",
+                "engine": "TGE",
+                "date": "2016-01-06 02:07:35"
+            },
+            "43": {
+                "name": "Nice Hitchhiker's Guide Reference, There",
+                "text": "// paxorr - remove this when no longer needed.\n//-----------------------------------------------------------------------------\nConsoleFunction( testAlert, void, 1,3,\"[title],[mesage]\")\n{\n   const char *title = \"The penguin is missing!\";\n   const char *message = \"Perhaps the salmon of doubt ate him.\";\n   if(argc>1)\n      title = argv[1];\n   if(argc>2)\n      message = argv[2];\n",
+                "engine": "TGE",
+                "date": "2016-01-09 00:22:04"
+            },
+            "44": {
+                "name": "The world's most obvious buffer overflow exploit",
+                "text": "char replacebuf[1024];\nchar* suppressSpaces(const char* in_pname)\n{\n\tU32 i = 0;\n\tchar chr;\n\tdo\n\t{\n\t\tchr = in_pname[i];\n\t\treplacebuf[i++] = (chr != 32) ? chr : '_';\n\t} while(chr);\n\n\treturn replacebuf;\n}\n",
+                "engine": "TGE",
+                "date": "2016-03-05 18:47:27"
+            },
+            "45": {
+                "name": "Extreme compression... but at what cost?",
+                "text": "const Point3F TSMesh::smU8ToNormalTable[] =\n{\n      Point3F( 0.565061f, -0.270644f, -0.779396f ),\n      Point3F( -0.309804f, -0.731114f, 0.607860f ),\n... snip 250 lines ...\n      Point3F( -0.660054f, -0.122486f, -0.741165f ),\n      Point3F( -0.531989f, 0.374711f, -0.759328f ),\n      Point3F( 0.194979f, -0.059120f, 0.979024f )\n};\n\nU8 TSMesh::encodeNormal(const Point3F & normal)\n{\n   U8 bestIndex=0;\n   F32 bestDot=-10E30f;\n   for (U32 i=0; i<256; i++)\n   {\n      F32 dot = mDot(normal,smU8ToNormalTable[i]);\n      if (dot>bestDot)\n      {\n         bestIndex = i;\n         bestDot = dot;\n      }\n   }\n   return bestIndex;\n}",
+                "engine": "TGE",
+                "date": "2016-04-18 12:43:38"
+            },
+            "46": {
+                "name": "That's one way to deprecate things",
+                "text": "//--------------------------------------------------------------------------\n// Lighting update: not used directly by sceneobject...\n// - if an interior, which contains this object, moves then this value will be incorrect\nbool SceneObject::getLightingAmbientColor(ColorF * col)\n{\n#if YOU_ARE_INSANE\n   AssertFatal(col!=NULL, \"SceneObject::getLightingAmbientColor: invalid color ptr\");\n\n...",
+                "engine": "TGE",
+                "date": "2016-05-02 21:44:08"
+            },
+            "47": {
+                "name": "Could have just used sprintf?",
+                "text": "int dItoa(int n, char s[])\n{\n   int i, sign;\n\n   if ((sign = n) < 0)  /* record sign */\n      n = -n;          /* make n positive */\n   i = 0;\n   do {       /* generate digits in reverse order */\n      s[i++] = n % 10 + '0';   /* get next digit */\n   } while ((n /= 10) > 0);     /* delete it */\n   if (sign < 0)\n      s[i++] = '-';\n   s[i] = '\\0';\n   dStrrev(s);\n   return dStrlen(s);\n}",
+                "engine": "TGE",
+                "date": "2016-07-27 23:27:11"
+            },
+            "48": {
+                "name": "I hope we never have to compile on Windows or anything",
+                "text": "S32 dSscanf(const char *buffer, const char *format, ...)\n{\n#if defined(TORQUE_OS_WIN) || defined(TORQUE_OS_XBOX) || defined(TORQUE_OS_XENON)\n   va_list args;\n   va_start(args, format);\n\n   // Boy is this lame.  We have to scan through the format string, and find out how many\n   //  arguments there are.  We'll store them off as void*, and pass them to the sscanf\n   //  function through specialized calls.  We're going to have to put a cap on the number of args that\n   //  can be passed, 8 for the moment.  Sigh.\n   static void* sVarArgs[20];\n   U32 numArgs = 0;\n\n   for (const char* search = format; *search != '\\0'; search++) {\n      if (search[0] == '%' && search[1] != '%')\n         numArgs++;\n   }\n   AssertFatal(numArgs <= 20, \"Error, too many arguments to lame implementation of dSscanf.  Fix implmentation\");\n\n   // Ok, we have the number of arguments...\n   for (U32 i = 0; i < numArgs; i++)\n      sVarArgs[i] = va_arg(args, void*);\n   va_end(args);\n\n   switch (numArgs) {\n     case 0: return 0;\n     case 1:  return sscanf(buffer, format, sVarArgs[0]);\n     case 2:  return sscanf(buffer, format, sVarArgs[0], sVarArgs[1]);\n     case 3:  return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2]);\n     case 4:  return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3]);\n     case 5:  return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4]);\n     case 6:  return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5]);\n     case 7:  return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6]);\n     case 8:  return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7]);\n     case 9:  return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8]);\n     case 10: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9]);\n     case 11: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9], sVarArgs[10]);\n     case 12: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9], sVarArgs[10], sVarArgs[11]);\n     case 13: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9], sVarArgs[10], sVarArgs[11], sVarArgs[12]);\n     case 14: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9], sVarArgs[10], sVarArgs[11], sVarArgs[12], sVarArgs[13]);\n     case 15: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9], sVarArgs[10], sVarArgs[11], sVarArgs[12], sVarArgs[13], sVarArgs[14]);\n     case 16: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9], sVarArgs[10], sVarArgs[11], sVarArgs[12], sVarArgs[13], sVarArgs[14], sVarArgs[15]);\n     case 17: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9], sVarArgs[10], sVarArgs[11], sVarArgs[12], sVarArgs[13], sVarArgs[14], sVarArgs[15], sVarArgs[16]);\n     case 18: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9], sVarArgs[10], sVarArgs[11], sVarArgs[12], sVarArgs[13], sVarArgs[14], sVarArgs[15], sVarArgs[16], sVarArgs[17]);\n     case 19: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9], sVarArgs[10], sVarArgs[11], sVarArgs[12], sVarArgs[13], sVarArgs[14], sVarArgs[15], sVarArgs[16], sVarArgs[17], sVarArgs[18]);\n     case 20: return sscanf(buffer, format, sVarArgs[0], sVarArgs[1], sVarArgs[2], sVarArgs[3], sVarArgs[4], sVarArgs[5], sVarArgs[6], sVarArgs[7], sVarArgs[8], sVarArgs[9], sVarArgs[10], sVarArgs[11], sVarArgs[12], sVarArgs[13], sVarArgs[14], sVarArgs[15], sVarArgs[16], sVarArgs[17], sVarArgs[18], sVarArgs[19]);\n   }\n   return 0;\n#else\n   va_list args;\n   va_start(args, format);\n   S32 res = vsscanf(buffer, format, args);\n   va_end(args);\n   return res;\n#endif\n}",
+                "engine": "TGE",
+                "date": "2016-07-27 23:27:37"
+            },
+            "49": {
+                "name": "Couldn't have just used a macro there?",
+                "text": "void dPrintf(const char *format, ...)\n{\n   va_list args;\n   va_start(args, format);\n   vprintf(format, args);\n   va_end(args);\n}",
+                "engine": "TGE",
+                "date": "2016-07-27 23:28:59"
+            },
+            "50": {
+                "name": "How many \"Undefined Behavior\" warnings is this going to cause? (Hint: about 10,000 since it was in a header)",
+                "text": "inline F32 mEaseInBack(F32 t, F32 b, F32 c, F32 d, F32 s) {\n\tif (s < 0) s = 1.70158f;\n\treturn c*(t/=d)*t*((s+1)*t - s) + b;\n};\ninline F32 mEaseOutBack(F32 t, F32 b, F32 c, F32 d, F32 s) {\n\tif (s < 0) s = 1.70158f;\n\treturn c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;\n};\ninline F32 mEaseInOutBack(F32 t, F32 b, F32 c, F32 d, F32 s) {\n\tif (s < 0) s = 1.70158f;\n\tif ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525f))+1)*t - s)) + b;\n\treturn c/2*((t-=2)*t*(((s*=(1.525f))+1)*t + s) + 2) + b;\n};\n",
+                "engine": "TGE",
+                "date": "2017-02-27 17:11:20"
+            },
+            "51": {
+                "name": "This is all one macro.",
+                "text": "#define DefineEngineStaticMethod( className, name, returnType, args, defaultArgs, usage )                                              \\\n   static inline returnType _fn ## className ## name ## impl args;                                                                     \\\n   TORQUE_API EngineTypeTraits< returnType >::ReturnValueType fn ## className ## _ ## name                                             \\\n      ( _EngineFunctionTrampoline< returnType args >::Args a )                                                                         \\\n   {                                                                                                                                   \\\n      _CHECK_ENGINE_INITIALIZED( className::name, returnType );                                                                        \\\n      return EngineTypeTraits< returnType >::ReturnValue(                                                                              \\\n         _EngineFunctionTrampoline< returnType args >::jmp( _fn ## className ## name ## impl, a )                                      \\\n      );                                                                                                                               \\\n   }                                                                                                                                   \\\n   static _EngineFunctionDefaultArguments< void args > _fn ## className ## name ## DefaultArgs defaultArgs;                            \\\n   static EngineFunctionInfo _fn ## name ## FunctionInfo(                                                                              \\\n      #name,                                                                                                                           \\\n      &_SCOPE< className >()(),                                                                                                        \\\n      usage,                                                                                                                           \\\n      #returnType \" \" #name #args,                                                                                                     \\\n      \"fn\" #className \"_\" #name,                                                                                                       \\\n      TYPE< returnType args >(),                                                                                                       \\\n      &_fn ## className ## name ## DefaultArgs,                                                                                        \\\n      ( void* ) &fn ## className ## _ ## name,                                                                                         \\\n      0                                                                                                                                \\\n   );                                                                                                                                  \\\n   static _EngineConsoleThunkType< returnType >::ReturnType _ ## className ## name ## caster( SimObject*, S32 argc, const char** argv )\\\n   {                                                                                                                                   \\\n      return _EngineConsoleThunkType< returnType >::ReturnType( _EngineConsoleThunk< 1, returnType args >::thunk(                      \\\n         argc, argv, &_fn ## className ## name ## impl, _fn ## className ## name ## DefaultArgs                                        \\\n      ) );                                                                                                                             \\\n   }                                                                                                                                   \\\n   static ConsoleFunctionHeader _ ## className ## name ## header                                                                       \\\n      ( #returnType, #args, #defaultArgs, true );                                                                                      \\\n   static ConsoleConstructor                                                                                                           \\\n      _ ## className ## name ## obj( #className, #name, _EngineConsoleThunkType< returnType >::CallbackType( _ ## className ## name ## caster ), usage, \\\n         _EngineConsoleThunk< 1, returnType args >::NUM_ARGS - _EngineConsoleThunkCountArgs() defaultArgs,                             \\\n         _EngineConsoleThunk< 1, returnType args >::NUM_ARGS,                                                                          \\\n         false, &_ ## className ## name ## header                                                                                      \\\n      );                                                                                                                               \\\n   static inline returnType _fn ## className ## name ## impl args\n",
+                "engine": "T3D",
+                "date": "2017-02-27 17:18:05"
+            },
+            "52": {
+                "name": "How does that even work?",
+                "text": "% new ScriptObject(a) { b = new ScriptObject(c); };\n3977\n\n% echo(3977.getName());\nc\n\n% echo(isObject(a));\n0\n\n% echo(3977.b);\n3977\n\n% c.dump();\nnew ScriptObject(c) {\n    b = \"3977\";\n};",
+                "engine": "TGE",
+                "date": "2017-03-09 02:34:11"
+            },
+            "53": {
+                "name": "I feel well informed",
+                "text": "/// Asks the operating system to put the process to sleep for at least ms milliseconds\nvoid Platform::sleep(U32 ms) {\n\t// note: this will overflow if you want to sleep for more than 49 days. just so ye know.\n\tusleep(ms * 1000);\n}\n",
+                "engine": "TGE",
+                "date": "2017-03-12 01:32:12"
+            },
+            "54": {
+                "name": "So *that's* why I can't copy and paste",
+                "text": "const char* Platform::getClipboard()\n{\n/*\n   HGLOBAL hGlobal;\n   LPVOID  pGlobal;\n\n   //make sure we can access the clipboard\n   if (!IsClipboardFormatAvailable(CF_TEXT))\n      return \"\";\n   if (!OpenClipboard(NULL))\n      return \"\";\n\n   hGlobal = GetClipboardData(CF_TEXT);\n   pGlobal = GlobalLock(hGlobal);\n   S32 cbLength = strlen((char *)pGlobal);\n   char  *returnBuf = Con::getReturnBuffer(cbLength + 1);\n   strcpy(returnBuf, (char *)pGlobal);\n   returnBuf[cbLength] = '\\0';\n   GlobalUnlock(hGlobal);\n   CloseClipboard();\n*/\n   char  *returnBuf = Con::getReturnBuffer(16);\n   returnBuf[0] = 0;\n\n   //note - this function never returns NULL\n   return returnBuf;\n}",
+                "engine": "TGE",
+                "date": "2017-03-12 01:48:30"
+            },
+            "55": {
+                "name": "To be fair, the comment isn't wrong",
+                "text": "bool OpenGLDevice::setScreenMode( U32 width, U32 height, U32 bpp, bool fullScreen, bool forceIt, bool repaint )\n{\n   // SANITY CHECK, AS THE FRICKING SCRIPTS PASS IN BAD VALUES.  LIKE ZERO.\n   if (!bpp)\n      bpp = platState.desktopBitsPixel;\n",
+                "engine": "TGE",
+                "date": "2017-03-12 01:59:44"
+            },
+            "56": {
+                "name": "I love arguments in my source code. Also shoutouts to unnecessary arbitrary limits",
+                "text": "   // DHC -- !!!!!TBD  -- Why the heck are we disallowing <640x480!?!?!  Consoles/other media devices could easily want!\n   // THIS SAME ISSUE APPLIES TO PC CODE -- REINFORCES THAT THERE NEEDS TO BE MORE CODEPATH SHARING AMONGST PLATFORMS!!!!\n   if ( newRes.w < 640 || newRes.h < 480 )\n   {\n      Con::warnf( ConsoleLogEntry::General, \"OpenGLDevice::setScreenMode -- can't go smaller than 640x480!\" );\n      return false;\n   }\n",
+                "engine": "TGE",
+                "date": "2017-03-12 03:00:21"
+            },
+            "57": {
+                "name": "Trust me, we didn't need vertical sync anyway (yes it's indented like that in the source)",
+                "text": "bool OpenGLDevice::setVerticalSync( bool on )\n{\n// HACK\non = false; // !!!!!TBD for some reason, the disable pref is set to one, the value is grabbed and flipped\n// and it STILL comes through as non-zero!!!\n",
+                "engine": "TGE",
+                "date": "2017-03-12 03:02:57"
+            },
+            "58": {
+                "name": "Behold, the origin of like 80% of buffer overflows in this engine",
+                "text": "int dSprintf(char *buffer, dsize_t /*bufferSize*/, const char *format, ...)\n{\n   va_list args;\n   va_start(args, format);\n   S32 len = vsprintf(buffer, format, args);\n\n#warning \"need to added zero-term + overflow handling\"\n   // to-do\n   // The intended behavior is to zero-terminate and not allow the overflow\n   return (len);\n}\n\n\nint dVsprintf(char *buffer, dsize_t /*bufferSize*/, const char *format, void *arglist)\n{\n   S32 len = vsprintf(buffer, format, (char*)arglist);\n\n#warning \"need to added zero-term + overflow handling\"\n   // to-do\n   // The intended behavior is to zero-terminate and not allow the overflow\n   return (len);\n}\n\n",
+                "engine": "TGE",
+                "date": "2017-03-12 03:04:33"
+            },
+            "59": {
+                "name": "Some humor in the sim manager code",
+                "text": "U32 postEvent(SimObject *destObject, SimEvent* event,U32 time)\n{\n   AssertFatal(time >= gCurrentTime,\n      \"Sim::postEvent: Cannot go back in time. (flux capacitor unavailable -- BJG)\");",
+                "engine": "TGE",
+                "date": "2017-03-31 20:31:39"
+            },
+            "60": {
+                "name": "Why do invalid skybox paths blow up my game? Oh. Oh. Oh no.",
+                "text": "bool Sky::loadDml()\n{\n   char path[1024], *p;\n   dStrcpy(path, mMaterialListName);\n   if ((p = dStrrchr(path, '/')) != NULL)\n      *p = 0;\n   mNumCloudLayers = 0;\n   Stream *stream = ResourceManager->openStream(mMaterialListName);\n   if (stream==NULL)\n   {\n#if defined(TORQUE_DEBUG)\n\t\tCon::warnf(\"Sky material list is missing: %s\", mMaterialListName);\n#else\n\t\t// ASSERT?? !!!!!!TBD\n#endif\n      return false;\n   }\n   else\n   {// !!!!!TBD dhc - there's no fricking error checking here or in materialList.read!!!!\n      mMaterialList.read(*stream);\n...",
+                "engine": "TGE",
+                "date": "2017-04-23 02:02:23"
+            },
+            "61": {
+                "name": "Where <em>should</em> sky.cc go? Game? Why not? Game/Fx? Possibly? Maybe lightingSystem? I'd still sorta understand. Where did they actually put it though?",
+                "text": "#include \"terrain/sky.h\"",
+                "engine": "TGE",
+                "date": "2017-04-26 02:51:02"
+            },
+            "62": {
+                "name": "Crouching tiger, hidden heap corruption... Can you find it? (Comments mine, they're the hint)",
+                "text": "bool FindMatch::isMatch( const char *exp, const char *str, bool caseSensitive )\n{\n   const char  *e=exp;\n   const char  *s=str;\n   bool  match=true;\n\n   while ( match && *e && *s )\n   {\n      switch( *e )\n      {\n         case '*':\n               e++;\n               match = false;\n               while( ((s=dStrchr(s,*e)) !=NULL) && !match )\n               {\n                  match = isMatch( e, s, caseSensitive );\n                  //What if s is at the end (null terminator) here? What happens next?\n                  s++;\n               }\n               return( match );\n         case '?':\n            e++;\n            s++;\n            break;\n         default:\n            if (caseSensitive) match = ( *e++ == *s++ );\n            else match = ( dToupper(*e++) == dToupper(*s++) );\n\n            break;\n      }\n   }\n\n   if (*e != *s) // both exp and str should be at '\\0' if match was successfull\n      match = false;\n\n   return ( match );\n}\n\n",
+                "engine": "TGE",
+                "date": "2017-04-26 02:57:44"
+            },
+            "63": {
+                "name": "delete this; What a great idea. Better be careful.",
+                "text": "void SimObject::deleteObject()\n{\n   mFlags.set(Deleted);\n\n   unregisterObject();\n   delete this;\n}\n",
+                "engine": "TGE",
+                "date": "2017-04-26 03:01:13"
+            },
+            "64": {
+                "name": "Oh so that's why ctrl doesn't register on OSX.",
+                "text": "void Input::process()\n{\n\n...\n\n               status = ISpElement_GetNextEvent(currEl, sizeof(mouseMove), &mouseMove, &gotEvent);\n               if (status!=noErr) break;\n               if (!gotEvent) break;\n\n               event.deviceInst = 0;\n               event.deviceType = MouseDeviceType;\n               event.objInst = 0;\n               event.modifier = 0; //modifierKeys; //!!!!!!TBD how to check.\n               event.ascii = 0;\n               event.action = SI_MOVE;\n",
+                "engine": "TGE",
+                "date": "2017-04-26 03:16:12"
+            },
+            "65": {
+                "name": "Memory corruption + crashing from having too many functions.",
+                "text": "// Apparently this still works in recent versions of T3D (~2014). Try running this in your copy of Torque.\n\nfor($i=0;$i<10000;$i++){eval(\"function a\"@$i@\"(){}\");}",
+                "engine": "TGE",
+                "date": "2017-05-04 03:55:13"
+            },
+            "66": {
+                "name": "Embedding your IP and specs in the test code is totally fine",
+                "text": "#if defined(TORQUE_DEBUG)\n// This function is solely for testing the functionality of the server browser\n// with more servers in the list.\nvoid addFakeServers( S32 howMany )\n{\n   static S32 sNumFakeServers = 1;\n   ServerInfo newServer;\n\n   for ( S32 i = 0; i < howMany; i++ )\n   {\n      newServer.numPlayers = Platform::getRandom() * 64;\n      newServer.maxPlayers = 64;\n      char buf[256];\n      dSprintf( buf, 255, \"Fake server #%d\", sNumFakeServers );\n      newServer.name = (char*) dMalloc( dStrlen( buf ) + 1 );\n      dStrcpy( newServer.name, buf );\n      newServer.gameType = (char*) dMalloc( 5 );\n      dStrcpy( newServer.gameType, \"Fake\" );\n      newServer.missionType = (char*) dMalloc( 4 );\n      dStrcpy( newServer.missionType, \"FakeMissionType\" );\n      newServer.missionName = (char*) dMalloc( 14 );\n      dStrcpy( newServer.missionName, \"FakeMapName\" );\n      Net::stringToAddress( \"IP:198.74.33.35:28000\", &newServer.address );\n      newServer.ping = ( Platform::getRandom() * 200 );\n      newServer.cpuSpeed = 470;\n      newServer.status = ServerInfo::Status_Responded;\n\n      gServerList.push_back( newServer );\n      sNumFakeServers++;\n   }\n\n   gServerBrowserDirty = true;\n}\n#endif // DEBUG",
+                "engine": "TGE",
+                "date": "2017-07-25 02:10:42"
+            },
+            "67": {
+                "name": "Hey look they actually realized fixed size buffers were a bad idea ",
+                "text": "char buffer[1024]; //< This will bite you in the butt someday.",
+                "engine": "TGE",
+                "date": "2017-08-31 23:25:15"
+            },
+            "68": {
+                "name": "Over 10 years later and this still isn't implemented.",
+                "text": "bool FileObject::openForRead(const char* /*fileName*/)\n{\n   AssertFatal(false, \"Error, not yet implemented!\");\n   return false;\n}\n\nbool FileObject::readMemory(const char *fileName)\n{\n   char buffer[1024];\n   Con::expandScriptFilename( buffer, sizeof( buffer ), fileName );\n\n   close();\n\n   void *data = NULL;\n   U32 dataSize = 0;\n   Torque::FS::ReadFile(buffer, data, dataSize, true);\n   if(data == NULL)\n      return false;\n\n   mBufferSize = dataSize;\n   mFileBuffer = (U8 *)data;\n   mCurPos = 0;\n\n   return true;\n}",
+                "engine": "TGE",
+                "date": "2017-10-08 01:58:18"
+            },
+            "70": {
+                "name": "Believe it or not, this is actually a security hole",
+                "text": "void GuiTextEditSliderCtrl::setValue()\n{\n   char buf[20];\n   dSprintf(buf,sizeof(buf),mFormat, mValue);\n   /* mFormat is a script/user controlled string */\n   Parent::setText(buf);\n}",
+                "engine": "T3D",
+                "date": "2018-03-05 22:19:33"
+            },
+            "71": {
+                "name": "Wait, where do we add + 1 again?",
+                "text": "U32 bufSize = 0;\nfor( AbstractClassRep* rep = AbstractClassRep::getClassList(); rep != NULL; rep = rep->getNextClass() )\n{\n   ...\n\n   bufSize += dStrlen( rep->getClassName() + 1 );\n}",
+                "engine": "T3D",
+                "date": "2018-03-08 00:32:27"
+            },
+            "72": {
+                "name": "Pop Quiz: What's the type of `remove`?",
+                "text": "template <class T>\ninline T* SparseArray<T>::remove(U32 key)\n{\n   U32 remove  = key % mModulus;\n   Node* probe = &mSentryTables[remove];\n   while (probe->next != NULL) {\n      if (probe->next->key == key) {\n         Node* remove = probe->next;\n         T* pReturn   = remove->pObject;\n         probe->next  = remove->next;\n         delete remove;\n         return pReturn;\n      }\n      probe = probe->next;\n   }\n\n   // [tom, 8/19/2006] This assert is also utterly, utterly useless\n   // AssertFatal(false, \"Key didn't exist in the array!\");\n   return NULL;\n}",
+                "engine": "T3D",
+                "date": "2018-03-13 19:17:28"
+            },
+            "73": {
+                "name": "What is the order of these arguments, anyway?",
+                "text": "inline F32 mAtan(const F32 x, const F32 y)\n{\n   return (F32) atan2(x, y);\n}\n\n... In the standard:\n\nSYNOPSIS\n\n     #include <math.h>\n\n     double\n     atan2(double y, double x);",
+                "engine": "TGE",
+                "date": "2018-04-28 03:56:28"
+            },
+            "74": {
+                "name": "No, seriously. What is the order of these arguments?!",
+                "text": "inline F32 mAtan2(const F32 y, const F32 x)\n{\n   return (F32)atan2(y, x);\n}\n\n...\n\ninline F64 mAtan2(const F64 x, const F64 y)\n{\n   return (F64) atan2(x, y);\n}\n",
+                "engine": "T3D",
+                "date": "2018-04-28 03:57:42"
+            },
+            "75": {
+                "name": "What *is* operator precedence, anyway?",
+                "text": "% echo(\"1\" @ \"2\" $= \"1\" @ \"2\");\n02",
+                "engine": "TGE",
+                "date": "2018-07-17 02:27:22"
+            },
+            "76": {
+                "name": "Removing objects from SimGroups does not delete them, it simply removes their parent group and you can never access them again.",
+                "text": "void SimGroup::removeObject(SimObject* obj)\n{\n   if (obj->mGroup == this) {\n      obj->onGroupRemove();\n      nameDictionary.remove(obj);\n      objectList.remove(obj);\n      obj->mGroup = 0;\n   }\n}",
+                "engine": "TGE",
+                "date": "2018-08-05 01:26:51"
+            },
+            "77": {
+                "name": "Well, how would *you* seed a random number generator?",
+                "text": "MRandomLCG random(1376312589 * (U32)this);\n",
+                "engine": "TGE",
+                "date": "2018-12-04 18:47:54"
+            },
+            "78": {
+                "name": "What do you call an \u00e1\u00e7\u00e7\u00ea\u00f1t\u00e8d character? Goofy, of course.",
+                "text": "   // TODO: alter this getAscii call\n   KEY_STATE state = STATE_LOWER;\n   if (event.modifier & (SI_CTRL|SI_ALT) )\n   {\n      state = STATE_GOOFY;\n   }",
+                "engine": "TGE",
+                "date": "2019-01-08 02:34:58"
+            },
+            "79": {
+                "name": "How big is 2^13 anyway?",
+                "text": "      validateBufferSize(8092);\n      validateArgBufferSize(2048);\n",
+                "engine": "TGE",
+                "date": "2019-05-13 01:46:56"
+            },
+            "80": {
+                "name": "Not like anyone would call this function twice in the same place...",
+                "text": "   /// Return a temporary buffer we can use to return data.\n   char* getReturnBuffer(U32 size)\n   {\t\n      AssertFatal(Con::isMainThread(), \"Manipulating return buffer from a secondary thread!\");\t\n      validateArgBufferSize(size);\t\n      return mArgBuffer;\t\n   }",
+                "engine": "T3D",
+                "date": "2019-05-13 01:47:28"
+            },
+            "81": {
+                "name": "Does arg order really matter anyway?",
+                "text": "     // Tiling dimensions must be positive and non-zero\n     if (animTexTiling.x <= 0 || animTexTiling.y <= 0)\n     {\n       Con::warnf(ConsoleLogEntry::General, \n                  \"ParticleData(%s) bad value(s) for animTexTiling [%d or %d <= 0], invalid datablock\", \n                  animTexTiling.x, animTexTiling.y, getName());\n       return false;\n     }",
+                "engine": "T3D",
+                "date": "2019-06-05 23:40:58"
+            },
+            "82": {
+                "name": "When copy+paste causes out of bounds write",
+                "text": "class SFXReverbProperties\n{\npublic:\n   ...\n   float flReflectionsPan[3];\n   ...\n   SFXReverbProperties()\n   {\n      ...\n      flReflectionsPan[3] = 0.0f;\n      ...\n   }\n};",
+                "engine": "T3D",
+                "date": "2019-07-04 20:38:43"
+            },
+            "83": {
+                "name": "Because of course",
+                "text": "/// NOTE: d is the NEGATIVE distance along the xyz normal.\nPlaneF( F32 _x, F32 _y, F32 _z, F32 _d);\n",
+                "engine": "TGE",
+                "date": "2020-10-02 01:46:08"
+            },
+            "84": {
+                "name": "Guess my new 16k gaming display can't play Torque games :(",
+                "text": "ConsoleFunction( getResolutionList, const char*, 2, 2, \"Returns a tab-seperated list of possible resolutions.\")\n{\n   ...\n\n   for (k = 0; k < modelist->size(); k++)\n   {\n      AssertFatal((*modelist)[k].resolution.x < 10000 && (*modelist)[k].resolution.y < 10000, \"My brain hurts with resolutions above 10k pixels. :(\");\n",
+                "engine": "TSE",
+                "date": "2021-01-29 14:36:35"
+            }
+        };
+
+        let params = new URL(location).searchParams;
+        let id = params.get("id");
+        if (id === null || Object.keys(things).indexOf(id) === -1) {
+            id = Object.keys(things)[Math.floor(Math.random() * Object.keys(things).length)];
+        }
+
+        let $engine = document.getElementById("engine");
+        let $name = document.getElementById("name");
+        let $text = document.getElementById("text");
+        let $link = document.getElementById("link");
+
+        $engine.innerText = "#Just" + things[id].engine + "Things";
+        $name.innerText = things[id].name;
+        $text.innerText = things[id].text;
+        const url = new URL(window.location);
+        url.searchParams.set('id', id);
+        $link.setAttribute("href", url);
+    </script>
+</body>
+</html>
