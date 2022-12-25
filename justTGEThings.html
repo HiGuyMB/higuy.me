@@ -507,6 +507,12 @@
                 "text": "ConsoleFunction( getResolutionList, const char*, 2, 2, \"Returns a tab-seperated list of possible resolutions.\")\n{\n   ...\n\n   for (k = 0; k < modelist->size(); k++)\n   {\n      AssertFatal((*modelist)[k].resolution.x < 10000 && (*modelist)[k].resolution.y < 10000, \"My brain hurts with resolutions above 10k pixels. :(\");\n",
                 "engine": "TSE",
                 "date": "2021-01-29 14:36:35"
+            },
+            "85": {
+                "name": "I didn't need to cast rays with length 2, anyway",
+                "text": "bool Container::castRay(const Point3F &start, const Point3F &end, U32 mask, RayInfo* info)\n{\n   // ... actual ray casting code here\n   return currentT != 2;\n}\n",
+                "engine": "TGE",
+                "date": "2022-12-25 13:34:52"
             }
         };
 
