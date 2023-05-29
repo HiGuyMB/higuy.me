@@ -516,7 +516,7 @@
             },
             "86": {
                 "name": "Know what doesn't start with / or contain : ... That's right, ../",
-                "text": "// Shoutouts to EhhThing @ DEF CON CTF Qualifiers 2023\n$ new FileObject(foo);\n// Call fails, file is not in VFS\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n// However, if we try to append it first...\n$ foo.openForAppend(\"../../../Desktop/wtf.txt\");\n$ foo.close();\n// Works great lmao\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n$ echo(foo.readLine());\ngame srs\n$ foo.close();\n\n\nbool ResManager::isValidWriteFileName(const char* fn) {\n    // all files must be based off the VFS\n    if (fn[0] == '/' || dStrchr(fn, ':'))\n        return false;\n",
+                "text": "// Shoutouts to EhhThing @ DEF CON CTF Qualifiers 2023\nnew FileObject(foo);\n// Call fails, file is not in VFS\nfoo.openForRead(\"../../../Desktop/wtf.txt\");\n// However, if we try to append it first...\nfoo.openForAppend(\"../../../Desktop/wtf.txt\");\nfoo.close();\n// Works great lmao\nfoo.openForRead(\"../../../Desktop/wtf.txt\");\necho(foo.readLine());\ngame srs\nfoo.close();\n\n\nbool ResManager::isValidWriteFileName(const char* fn) {\n    // all files must be based off the VFS\n    if (fn[0] == '/' || dStrchr(fn, ':'))\n        return false;\n",
                 "engine": "TGE",
                 "date": "2023-05-29 04:01:00"
             },
