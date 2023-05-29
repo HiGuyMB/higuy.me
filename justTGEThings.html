@@ -515,8 +515,8 @@
                 "date": "2022-12-25 13:34:52"
             },
             "86": {
-                "name": "I guess the VFS doesn't sandbox the game after all",
-                "text": "// Shoutouts to EhhThing @ DEF CON CTF Qualifiers 2023\n$ new FileObject(foo);\n// Call fails, file is not in VFS\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n// However, if we try to append it first...\n$ foo.openForAppend(\"../../../Desktop/wtf.txt\");\n$ foo.close();\n// Works great lmao\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n$ echo(foo.readLine());\ngame srs\n$ foo.close();",
+                "name": "Know what doesn't start with / or contain : ... That's right, ../",
+                "text": "// Shoutouts to EhhThing @ DEF CON CTF Qualifiers 2023\n$ new FileObject(foo);\n// Call fails, file is not in VFS\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n// However, if we try to append it first...\n$ foo.openForAppend(\"../../../Desktop/wtf.txt\");\n$ foo.close();\n// Works great lmao\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n$ echo(foo.readLine());\ngame srs\n$ foo.close();\n\n\nbool ResManager::isValidWriteFileName(const char* fn) {\n    // all files must be based off the VFS\n    if (fn[0] == '/' || dStrchr(fn, ':'))\n        return false;\n",
                 "engine": "TGE",
                 "date": "2023-05-29 04:01:00"
             },
