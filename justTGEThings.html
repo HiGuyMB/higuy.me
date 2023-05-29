@@ -513,7 +513,13 @@
                 "text": "bool Container::castRay(const Point3F &start, const Point3F &end, U32 mask, RayInfo* info)\n{\n   // ... actual ray casting code here\n   return currentT != 2;\n}\n",
                 "engine": "TGE",
                 "date": "2022-12-25 13:34:52"
-            }
+            },
+            "86": {
+                "name": "I guess the VFS doesn't sandbox the game after all",
+                "text": "// Shoutouts to EhhThing @ def con ctf 2023\n$ new FileObject(foo);\n$ foo.openForAppend(\"../../../Desktop/wtf.txt\");\n$ foo.close();\n$ foo.openForRead(\"../../../Desktop/wtf.txt\);\n$ echo(foo.readLine());\ngame srs\n$ foo.close();",
+                "engine": "TGE",
+                "date": "2023-05-29 04:01:00",
+            },
         };
 
         let params = new URL(location).searchParams;
