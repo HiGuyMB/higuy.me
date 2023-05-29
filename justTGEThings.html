@@ -516,7 +516,7 @@
             },
             "86": {
                 "name": "I guess the VFS doesn't sandbox the game after all",
-                "text": "// Shoutouts to EhhThing @ DEF CON CTF Qualifiers 2023\n$ new FileObject(foo);\n$ foo.openForAppend(\"../../../Desktop/wtf.txt\");\n$ foo.close();\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n$ echo(foo.readLine());\ngame srs\n$ foo.close();",
+                "text": "// Shoutouts to EhhThing @ DEF CON CTF Qualifiers 2023\n$ new FileObject(foo);\n// Call fails, file is not in VFS\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n// However, if we try to append it first...\n$ foo.openForAppend(\"../../../Desktop/wtf.txt\");\n$ foo.close();\n// Works great lmao\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n$ echo(foo.readLine());\ngame srs\n$ foo.close();",
                 "engine": "TGE",
                 "date": "2023-05-29 04:01:00"
             },
@@ -533,9 +533,15 @@
                 "date": "2023-05-29 04:01:00"
             },
             "89": {
-                "name": "Please just let me see all your files",
-                "text": "// Shoutouts to crazyman at DEF CON CTF Qualfiers 2023\nsetModPaths(\".;\" @ $usermods);\necho(findFirstFile(\"*\"));\n==>../Windows NT/Accessories/wordpad.exe",
+                "name": "My cool new game mod is named .. and lets me see all your files",
+                "text": "// Shoutouts to crazyman at DEF CON CTF Qualfiers 2023\nsetModPaths(\".;\" @ $usermods);\necho(findFirstFile(\"*\"));\n==> ../Windows NT/Accessories/wordpad.exe",
                 "engine": "TGE",
+                "date": "2023-05-29 04:01:00"
+            },
+            "90": {
+                "name": "damn, yes i can",
+                "text": "% echo(\"I am going to paste more than 64 chars into the terminal\");\n% I am going to paste more than 64 chars into the terminal\nI am going to paste more than 64 chars into the terminal\n% =================================================================\n== 67440 == ERROR: AddressSanitizer: stack-buffer - overflow on address 0x00016b425880 at pc 0x000108276d98 bp 0x00016b425810 sp 0x00016b425808\nWRITE of size 1 at 0x00016b425880 thread T0\nRelevant engine code:\nvoid StdConsole::process()\n{\n   if(stdConsoleEnabled)\n   {\n      //U16 key;\n      char typedData[64];  // damn, if you can type this fast... :-D\n      ...\n      numEvents = read(stdIn, typedData, 64);\n      if (numEvents == -1)\n         return;\n      ...\n      typedData[numEvents] = '\0';\n",
+                "engine": "T3D",
                 "date": "2023-05-29 04:01:00"
             }
         };
