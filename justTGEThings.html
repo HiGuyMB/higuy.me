@@ -516,22 +516,28 @@
             },
             "86": {
                 "name": "I guess the VFS doesn't sandbox the game after all",
-                "text": "// Shoutouts to EhhThing @ def con ctf 2023\n$ new FileObject(foo);\n$ foo.openForAppend(\"../../../Desktop/wtf.txt\");\n$ foo.close();\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n$ echo(foo.readLine());\ngame srs\n$ foo.close();",
+                "text": "// Shoutouts to EhhThing @ DEF CON CTF Qualifiers 2023\n$ new FileObject(foo);\n$ foo.openForAppend(\"../../../Desktop/wtf.txt\");\n$ foo.close();\n$ foo.openForRead(\"../../../Desktop/wtf.txt\");\n$ echo(foo.readLine());\ngame srs\n$ foo.close();",
                 "engine": "TGE",
-                "date": "2023-05-29 04:01:00",
+                "date": "2023-05-29 04:01:00"
             },
             "87": {
                 "name": "Yeah, that makes sense to me",
                 "text": "echo(strRepeat(\"A\", 4));\nAAAA\necho(strRepeat(\"A\", 0));\n\necho(strRepeat(\"A\", -1));\n==65659==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x00012578d100 at pc 0x0001010adbf0 bp 0x00016f3d0d10 sp 0x00016f3d0d08\nWRITE of size 1 at 0x00012578d100 thread T0\n...",
                 "engine": "T3D",
-                "date": "2023-05-29 04:01:00",
+                "date": "2023-05-29 04:01:00"
             },
             "88": {
                 "name": "Numbers are Hard",
                 "text": "$a = 1; echo(($a + 1) & ($a + 1));\n==> 4611686018427387904",
                 "engine": "T3D",
-                "date": "2023-05-29 04:01:00",
+                "date": "2023-05-29 04:01:00"
             },
+            "89": {
+                "name": "Please just let me see all your files",
+                "text": "// Shoutouts to crazyman at DEF CON CTF Qualfiers 2023\nsetModPaths(\".;\" @ $usermods);\necho(findFirstFile(\"*\"));\n==>../Windows NT/Accessories/wordpad.exe",
+                "engine": "TGE",
+                "date": "2023-05-29 04:01:00"
+            }
         };
 
         let params = new URL(location).searchParams;
