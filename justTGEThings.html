@@ -543,6 +543,12 @@
                 "text": "% echo(\"I am going to paste more than 64 chars into the terminal\");\n% I am going to paste more than 64 chars into the terminal\nI am going to paste more than 64 chars into the terminal\n% =================================================================\n== 67440 == ERROR: AddressSanitizer: stack-buffer - overflow on address 0x00016b425880 at pc 0x000108276d98 bp 0x00016b425810 sp 0x00016b425808\nWRITE of size 1 at 0x00016b425880 thread T0\n\nRelevant engine code:\n\nvoid StdConsole::process()\n{\n   if(stdConsoleEnabled)\n   {\n      //U16 key;\n      char typedData[64];  // damn, if you can type this fast... :-D\n\n      ...\n\n      numEvents = read(stdIn, typedData, 64);\n      if (numEvents == -1)\n         return;\n\n      ...\n\n      typedData[numEvents] = '\0';\n",
                 "engine": "T3D",
                 "date": "2023-05-29 04:01:00"
+            },
+            "91": {
+                "name": "Wow, rude",
+                "text": "//--------------------------------------\n// Silly Korean registry key checker:\n//\n// NOTE: \"Silly\" refers to the nature of this hack, and is not intended\n//       as commentary on Koreans as a nationality. Thank you for your\n//       attention.\n//--------------------------------------\nDefineEngineFunction(isKoreanBuild, bool, (), , \"isKoreanBuild()\")",
+                "engine": "T3D",
+                "date": "2023-12-13 14:25:00"
             }
         };
 
