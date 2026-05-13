@@ -568,6 +568,20 @@
 }`,
                 "engine": "TGE",
                 "date": "2024-03-02 18:49:00"
+            },
+            "94": {
+                "name": "What's the spec for back()? The last element? Not the one-past-the-end-element? Well that's unfortunate.",
+                "text": `template<class T> inline T& Vector<T>::back()
+{
+   return *end();
+}
+
+template<class T> inline const T& Vector<T>::back() const
+{
+   return *end();
+}`,
+                "engine": "TGE",
+                "date": "2026-05-13 14:51:00"
             }
         };
 
